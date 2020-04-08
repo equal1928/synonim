@@ -1,0 +1,75 @@
+'Angular': ['berbentuk bergerigi', 'berbentuk V', 'berbentuk Y', 'akimbo', 'bifurcate', 'divaricate', 'oblique', 'tajam'],
+
+'Round': ['bulbous', 'bergulung', 'melengkung', 'silinder', 'elips', 'bujur', 'bulat', 'arced', 'arched', 'bent', 'bowed', 'circular', 'coiled', 'looped', 'orbed', 'ringed', 'spheroid','spiral', 'annular', 'arciform', 'curvilinear', 'discoid', 'berbentuk cakera', 'domical', 'berbentuk telur', 'globose', 'globular', 'orbicular', 'orbiculate', 'rotund'],
+
+'Bad': ['murah', 'mengerikan', 'buruk', 'miskin', 'kasar', 'sedih', 'tidak boleh diterima', 'blah', 'bummer', 'diddly', 'downer', 'tidak sempurna', 'lebih rendah', 'junky', 'sintetik', 'abominable', ' 'ketinggalan', 'ketinggalan', 'ceroboh', 'cacat', 'kekurangan', 'tidak memuaskan', 'grody', 'grungy', 'icky', 'tidak betul', 'tidak baik' raunchy ',' slipshod ', 'substandard','tidak memuaskan'],
+
+‘Good’ : [ 'acceptable', 'great', 'marvelous', 'positive', 'satisfactory', 'satisfying', 'valuable', 'wonderful', 'ace', 'boss', 'bully', 'capital', 'choice', 'crack', 'nice', 'rad', 'sound', 'sterling', 'super', 'welcome', 'worthy', 'agreeable', 'commendable', 'congenial', 'deluxe', 'first-class', 'first-rate', 'gnarly', 'gratifying', 'honorable', 'neat', 'precious', 'recherché', 'reputable', 'select', 'shipshape', 'super-eminent', 'super-excellent', 'tip-top', 'up to snuff'],
+
+'Cold': ['pahit', 'cepat', 'dingin', 'cool', 'crisp, 'beku', 'dingin', 'sengit', 'mentah', 'snowy', 'Siberia', 'chill', 'memotong', 'hyperborean', 'peti es', 'tajam', 'menyengat', 'algid', 'di bawah beku', 'di bawah nol', 'menggigit', 'boreal', 'berkenaan dgn musim sejuk', 'frore', 'gelid', 'glasier', 'merinding', 'hiemal', 'yg menjepit', 'dilumpuhkan', 'kebas', 'satu-anjing malam', 'menembusi', 'menindik', 'kutub', 'rimy', 'teruk', 'sleety', 'dua-anjing malam'],
+
+'Hot': ['menyala', 'mendidih', 'lembap', 'merah', 'terik', 'gerah', 'terik', 'tropika', 'putih', 'membakar', 'melepuh', 'panas', 'terbakar', 'calescent', 'decalescent', 'hangat', 'demam', 'feverous', 'berapi-api', 'pijar', 'seperti oven', 'di atas api', 'ovenlike', 'parching', 'paip', 'recalescent', 'menggoreng', 'merokok', 'tersumbat', 'sweltry', 'termogenik', 'tropic'],
+
+'Complex': ['rumit', 'kompleks', 'komposit', 'senyawa', 'gandakan', 'mosaic', 'beberapa', 'multiplex', 'rumit', 'homogen', 'bercampur', 'campuran-up', 'pelbagai', 'kusut''],
+
+'Simple': ['rendah', 'biasa', 'mudah', 'telus', 'tidak rumit', 'mudah sekali', 'tanpa', 'facile', 'incomplex', 'difahami', 'cerah', 'diurus', tidak masalah, tidak sulit', 'maksudnya diri', 'mudah seperti ABC', 'terang'],
+
+'Cowardly': ['pengecut', 'takut', 'cemas', 'khuatir', 'mundur', 'pangkalan', 'meringkuk', 'craven', 'malu-malu', 'kecewa', 'menakutkan', 'pengecut', 'gelisah', 'penakut', 'panik', 'pigeonhearted', 'penakut', 'berjalan', 'takut', 'mengecut', 'malu', 'pengecut', 'malu-malu', 'malu-malu', 'lemah'],
+
+'Dangerous': ['membimbangkan', 'buruk', 'kritis', 'maut', 'jahat', 'berbahaya', 'tidak menentu', 'berisiko', 'serius', 'khianat', 'tidak sihat', 'aman', 'tidak stabil', 'untung-untungan', 'dangersome', 'halus', 'terdedah', 'ganas', 'mengancam', 'luar biasa', 'viperous', 'jahat'],
+
+'Secure': [‘dilindungi', 'mempertahankan', 'dijaga', 'terlindung', 'secukupnya', 'ditembusi', 'riskless', 'dapat disangkal', 'tidak rosak', 'terluka'],
+
+'Dark': [['hitam', 'gelap', 'dim, 'kotor', 'membosankan', 'berkabut', 'suram', 'misty', 'keruh',
+'mendung', 'bayangan', 'muram', 'senja', 'kehitaman', 'betul', 'agak hitam', sakit-menyala', 'kurang jelas', 'tinta', 'lightless', 'yg mendebarkan', 'samar', 'obfuscous', 'kabur', 'pitch hitam', 'padang-gelap', 'bersifat ter', 'rayless', 'teduh', 'shady','sunless', 'tak berlampu', 'samar-samar'],
+'Luminous': [''cemerlang', 'pijar', 'cerah', 'unsur', 'berseri', 'bersinar', 'lut', 'berseri-seri', 'jelas', 'bercahaya', 'diterangi', 'lambent', 'menyala', 'refulgent', 'resplendent']
+
+'Difficult': ['bercita-cita tinggi', 'sulit', 'membebankan', 'mencabar', 'penting', 'menuntut', 'susah payah', 'bermasalah', 'teruk', 'berat',
+ 
+'menyusahkan', 'mengganggu', 'difficile', 'effortful', 'keras-won', 'rumit', 'menjengkelkan', 'masalah', 'tinggi', 'kaku', 'titanic', 'melelahkan', 'pantang menyerah',],
+
+'Easy': ['jelas', 'lancar', 'mudah','tidak rumit', 'jelas', 'asas', "anak", 'rendah', 'facile', 'bertolak ansur', 'cahaya', 'sedikit', 'diurus', 'nyata', 'hanya', ' 'biasa', 'mudah seperti ABC', 'tak berat', ],
+
+'Evil': ['buruk', 'benci', 'kejam', 'jahat', 'jelek', 'busuk', 'serangan', 'bajingan', 'salah', 'marah', 'terkutuk', ''menjijikkan', 'berbahaya', 'mendatangkan bencana', 'yg merosakkan', 'ganas', 'tidak baik', 'penuh benci', 'memberontak', 'unpropitious', 'murka'],
+
+'Benign': ['baik hati', 'baik', 'mesra', 'lembut', 'ringan', 'lunak', 'pemurah','sesuai', 'hati', 'baik hati', 'goodhearted', 'pertolongan', 'belas kasihan', 'mewajibkan'],
+'Faded': ['run-down', 'kumuh', 'buruk', 'sobek', 'usang', 'dipakai', 'berlumur', 'berubah warna', 'pucat', 'wan', 'kelabu', 'kotor', 'kurang jelas', 'suram', 'kuyu', 'keruh', 'betul', 'shopworn'],
+'Bright': [['menyala', 'cemerlang', 'mempesonakan', 'berkelip', 'emas', 'bercahaya', 'berseri', 'berkilat', 'perak', 'berkilau', 'cerah', 'jelas', 'terbakar', 'bersinar', 'cahaya', 'berseri-seri', 'coruscating', 'berkilauan', 'diterangi', 'menerangi', 'pijar', 'radiasi', 'lambent', 'digilap', 'resplendent', 'gemilang', 'disinari matahari'],
+'Feeble': ['sakit', 'tua sekali', 'lembek', 'rapuh', 'lemah', 'sakit-sakitan', 'tua', 'tak berguna lagi', 'enervated', 'pingsan', 'lembut', 'berdaya', 'tidak mencukupi', 'ragu-ragu', 'tak berdaya', 'sapless',],
+'Strong': ['tahan lama', 'firma', 'kuat', 'teguh', 'aman', 'solid', 'stabil', 'besar', 'gigih', 'sulit', 'berkekalan', 'keras', 'hardy', 'otot', 'bertetulang','lasak', 'bunyi', 'stark', 'gempal', 'tegap', 'kukuh','pantang menyerah', 'well-built', 'berasas', 'baik'],
+'Masculine': ['macho', 'waras', 'otot', 'kuda jantan', 'stud', 'berani', 'seperti laki-laki', 'tegas', 'gempal-hati', 'tegap', 'kuat', 'jantan', 'well-built'],
+'Feminine': ['perempuan', 'lembut', 'wanita'],
+'Passive': ['bersikap tidak peduli', 'acuh tak acuh', 'statik', 'tidak terbabit', 'lama menderita', 'pasien', 'berhasil', 'acquiescent', 'tertidur', 'patuh', 'jinak', 'lengai', 'nonresistant', 'apatis', 'poker-berhadapan', 'tunduk', 'penurut', 'unassertive', 'unresisting'],
+'Active': ['bergerak', 'berjalan', 'berkesan', 'exertive', 'terburu-buru', 'resah', 'cepat'],
+
+'Quiet': ['diam-diam', 'senyap', 'bisu', 'tak bersuara', 'mendiamkan diri', 'bungkam', 'membisu', 'pendiam'],
+
+'Loud': ['riuh', 'memekakkan telinga', 'kuat', 'membanggakan', 'rowdy', 'lantang', 'bergemuruh', 'keras', 'terang-terangan', 'blustering', ', 'terhempas', 'menindik telinga', 'fulminating', 'tinggi berbunyi', 'kuat-suara', 'bising', 'nyaring', 'hingar-bingar'],
+
+'Rough': ['bumpy', 'kasar', 'lasak', 'patah', 'pecah-pecah', 'bergerigi', 'ridged', 'bergolak', 'kusut'],
+
+'Tender': ['rapuh', 'halus', 'memanjakan', 'beludru', 'lembut', 'kembang']
+
+'Sad': ['marah', 'berniat jahat', 'pendendam', 'gagah', 'sengit', 'empedu', 'sinis', 'selera', 'berbisa', 'menyindir', 'agak hebat', 'ganas', 'dengki'],
+
+'Joyful': ['ceria', 'gembira', 'menyeronokkan', 'perayaan', 'merry', 'kegembiraan', 'bahagia', 'terpesona'],
+'Short': ['ringkas', 'singkat', 'rapi', 'memendekkan', 'menurun', 'berkurang', 'sekejap', 'sedikit', 'pendek', 'berukuran'],
+'Long':['tinggi', 'panjang', 'berlarutan', 'terus', 'memanjang', 'berkekalan', 'dibesarkan', 'terlintas', 'berpanjangan', 'ditarik', 'luas', 'jauh', 'semampai', 'terulur', 'berkaki panjang', 'spread', 'stringy'],
+'Slow': [ 'secara beransur-ansur', 'santai', 'lesu', 'pasif', 'dengan tenang', 'berlama-lama', 'melambatkan', 'lambat', 'menangguhkan', 'bersikap tidak peduli', 'malas', 'lengai', 'ketinggalan', 'tidak bermaya', 'cuai', 'apatis', 'terlambat', 'tortoiselike'],
+
+'Quick': ['tergesa-gesa', 'segera', 'serta-merta', 'lincah', 'tiba-tiba', 'secepat mungkin', 'tidak sabar', 'terburu-buru', 'cepat', 'bersemangat'],
+
+'Small': ['sempit', 'terhad', 'sedikit', 'mikroskopik', 'kecil', 'remeh',
+ 
+'miskin', 'pendek', 'kecil-kecilan', 'pengecil', 'mini', 'istimewa', 'comel', 'udang', 'bitty', 'merendah diri', 'immature', 'tidak mencukupi', 'sepele', 'bersaiz poket', 'runty', 'kerdil', 'teensy', 'berukuran']
+
+'Big': ['amat besar', 'besar', 'sangat besar', 'lemak', 'penuh', 'gergasi', 'lumayan', 'luas', 'dibanjiri', 'berat', 'banyak', 'sesak', 'tugas berat', 'berat', 'kaku', 'humongous', 'luar biasa', 'lapang'],
+
+'Smooth': ['rata', 'lembut', 'berkilat', 'ringan', 'digilap', 'seperti sutera', 'beludru', 'walaupun', 'flush', 'mendatar', 'biasa', 'hambar', 'tenang', 'lancar', 'mirrorlike', 'membosankan', 'planate', 'tanpa gangguan', 'sebangun'],
+
+'Rough_or_not_smooth': [‘patah', 'kompleks', 'rumit', 'tidak berterusan', 'diganggu', 'sulit', 'keras', 'mengangkat', 'kasar', 'ketat', 'bermasalah', 'bergelora', 'ubah', 'ganas', 'luar biasa', 'tidak konsisten', 'berkedut', 'lancar],
+
+'Ugly': ['jelek', 'buruk', 'mengerikan', 'menakutkan', 'cantik', 'busuk', 'jorok', 'sakit', 'menjijikkan', 'cacat', 'salahnya', 'memberontak', 'uncomely', 'tdk menarik', 'unlovely', 'unprepossessing'],
+
+'Beautiful': ['menarik', 'menawan', 'comel', 'mempesonakan', 'halus', 'enak', 'elegan',
+'yang indah', 'baik-baik', 'baik-cari', 'cantik', 'anggun', 'grand', 'tampan', 'indah', 'menyenangkan', 'menakjubkan', 'terpuji', 'malaikat', 'bergaya, 'ilahi', 'baik', 'berseri', 'ravishing', 'resplendent', 'luhur']
