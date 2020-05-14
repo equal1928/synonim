@@ -1,0 +1,272 @@
+import gensim
+import numpy as np
+from gensim.models import Word2Vec
+from gensim.models import KeyedVectors
+import pickle
+import io
+import scipy.stats as stats
+import matplotlib.pyplot as plt
+
+
+
+
+def save_file(obj, name ):
+    with open(name + '.pkl', 'wb') as f:
+        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+        
+def load_file(name ):
+    with open(name + '.pkl', 'rb') as f:
+        return pickle.load(f)
+        
+def load_vectors(fname):
+    fin = io.open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
+    data = {}
+    for line in fin:
+        tokens = line.rstrip().split(' ')
+        data[tokens[0]] = np.array(list(map(float, np.array(tokens[1:]))))
+    return data
+
+words2vecs = load_vectors("cc.ja.300.vec")  
+
+save_file(words2vecs, 'words2vecs')
+
+a = []
+handle = open('ja.txt', 'r', encoding='utf-8')
+for line in handle:
+    a.append(str(line))
+    
+for i in range(len(a)):
+    a[i] = a[i].replace('\t', ' ')
+    a[i] = a[i].replace('\n', '')
+    a[i] = a[i].replace('/', '')
+
+word2phones = {}
+for i in a:
+    temp = i.split()
+    word2phones[temp[0]] = temp[1]
+
+words2ph_rdy = {}
+for key in word2phones.keys():
+    var = []
+    s = word2phones[key]
+    for i in range(len(s)):
+        if flag:
+            flag = False
+            continue
+        else:
+            if (i != len(s) - 1) and ((s[i + 1] == ':')\
+                                       or (s[i] == 'a') and (s[i + 1] == 'i')\
+                                       or (s[i] == 'e') and (s[i + 1] == 'i')\
+                                       or (s[i] == 'o') and (s[i + 1] == 'i')\
+                                       or (s[i] == 'a') and (s[i + 1] == 'u')\
+                                       or (s[i] == 'ə') and (s[i + 1] == 'u')\
+                                       or (s[i] == 't') and (s[i + 1] == '∫')\
+                                       or (s[i] == 'd') and (s[i + 1] == 'ʒ')):
+                flag = True
+                temp = s[i] + s[i + 1]
+                var.append(temp)
+            elif s[i] == '.' or s[i] == ':':
+                continue
+            else:
+                var.append(phones[i])
+    words2ph_rdy[key] = var
+    
+save_file (words2ph_rdy, 'word2phones')
+
+words2vecs_and_sounds = {}
+for word in word2phones.keys():
+    if word in words2vecs.keys():
+        words2vecs_and_sounds[word] = (words2vecs[word], word2phones[word])
+        
+save_file(words2vecs_and_sounds,'words2vecs_and_sounds')
+kor_dic = load_file('syns_jap')
+adj_vec = {}
+for word in kor_dic.keys():
+    tmp_vec = np.zeros(300)
+    for adj in kor_dic[word]:
+        if adj in words2vecs.keys():
+            tmp_vec += words2vecs[adj]
+    adj_vec[word] = np.array(tmp_vec)
+    
+save_file(adj_vec, 'adj_vec')
+
+opposite_dict = {
+            'angular_round': ((adj_vec['angular']) - adj_vec['round']),
+            'bad_good': ((adj_vec['bad']) - adj_vec['good']),
+            'cold_hot': ((adj_vec['cold']) - adj_vec['hot']),
+            'complex_simple': ((adj_vec['complex']) - adj_vec['simple']),
+            'cowardly_brave': ((adj_vec['cowardly']) - adj_vec['brave']),
+            'dangerous_secure': ((adj_vec['dangerous']) - adj_vec['secure']),
+            'dark_luminous': ((adj_vec['dark']) - adj_vec['luminous']),
+            'difficult_easy': ((adj_vec['difficult']) - adj_vec['easy']),
+            'evil_benign': ((adj_vec['evil']) - adj_vec['benign']),
+            'faded_bright': ((adj_vec['faded']) - adj_vec['bright']),
+            'feeble_strong': ((adj_vec['feeble']) - adj_vec['strong']),
+            'masculine_feminine': ((adj_vec['masculine']) - adj_vec['feminine']),
+            'passive_active': ((adj_vec['passive']) - adj_vec['active']),
+            'quiet_loud': ((adj_vec['quiet']) - adj_vec['loud']),
+            'rough_tender': ((adj_vec['rough']) - adj_vec['tender']),
+            'sad_joyful': ((adj_vec['sad']) - adj_vec['joyful']),
+            'short_long': ((adj_vec['short']) - adj_vec['long']),
+            'slow_quick': ((adj_vec['slow']) - adj_vec['quick']),
+            'small_big': ((adj_vec['small']) - adj_vec['big']),
+            'smooth_rough_or_not_smooth': ((adj_vec['smooth']) - adj_vec['rough_or_not_smooth']),
+            'ugly_beautiful': ((adj_vec['ugly']) - adj_vec['beautiful'])}
+
+save_file(opposite_dict, 'opposite_dict')
+
+sounds = []
+for item in words2vecs_and_sounds.items():
+    transcription = item[1][1]
+    try:
+        sounds += transcription
+    except:
+        print(transcription)
+sounds = list(set(sounds))
+
+save_file(sounds, 'sounds')
+
+sound2tuple = {}
+for sound in sounds:
+    f = []
+    w = []
+    wo = []
+    for word in words2vecs_and_sounds.keys():
+        transcription = words2vecs_and_sounds[word][1]
+        if sound in transcription:
+            if transcription[0] == sound:
+                f.append(word)
+            if sound in transcription[1:]:
+                w.append(word)
+        else:
+            wo.append(word)
+    sound2tuple[sound] = (f, w, wo)
+
+save_file(sound2tuple, 'sound2tuple') 
+
+projection_dict = {}
+for sound in sounds:
+    projection_dict[sound] = {}
+    for axes_name, axes_vec in opposite_dict.items():
+        len_axes = np.linalg.norm(axes_vec)
+        axes = axes_vec / len_axes
+        axes_distributions = []
+        for distribution in sound2tuple[sound]:
+            cosine_list = []
+            for word in distribution:
+                word_vec = words2vecs_and_sounds[word][0]
+                len_vec = np.linalg.norm(word_vec)
+                vec = word_vec / len_vec
+                cosine_between_vectors = np.dot(vec, axes)
+                cosine_list.append(cosine_between_vectors)
+            axes_distributions.append(cosine_list)
+        projection_dict[sound][axes_name] = axes_distributions
+
+save_file(projection_dict, 'projection_dict')
+
+def GetMannWhitneyu(list0, list1):
+    if len(list0)>20 and len(list1)>20:
+        a, p_value = stats.mannwhitneyu(list0, list1)
+        return p_value
+    else: return None
+
+dict = {}
+for ph in projection_dict.keys():
+    tmp_dict = {}
+    for axis in projection_dict[ph].keys():
+        tmp = projection_dict[ph][axis]
+        f_w = GetMannWhitneyu(tmp[0],tmp[1])
+        w_wo = GetMannWhitneyu(tmp[1],tmp[2])
+        wo_f = GetMannWhitneyu(tmp[2],tmp[0])
+        tmp_dict[axis] = (f_w, w_wo, wo_f) 
+    dict[ph] = tmp_dict
+    
+save_file(dict, 'dict')
+
+def AddValue(max_value, tpl):
+    arr = []
+    for num in range(3):
+        if tpl[num] == None or tpl[num] > max_value:
+            continue
+        else:
+            arr.append({num_2_text(num), tpl[num]})
+    return arr
+         
+def num_2_text(num):
+    if num == 0:
+        return 'first_with'
+    elif num == 1:
+        return 'with_without'
+    return 'without_first'
+
+def Clear(dic):
+    arr = []
+    for axis in dic:
+        if len(dic[axis]) == 0:
+            arr.append(axis)
+    for axis in arr:
+        del dic[axis]   
+
+ph_axis_less_0001 = {}
+ph_axis_less_001 = {}
+for ph in dict.keys():
+    ph_axis_less_0001[ph] = {}
+    ph_axis_less_001[ph] = {}
+    for axis in dict[ph].keys():
+        ph_axis_less_0001[ph][axis] = AddValue(0.001, dict[ph][axis])
+        ph_axis_less_001[ph][axis] = AddValue(0.01, dict[ph][axis])
+        Clear(ph_axis_less_0001[ph])
+        Clear(ph_axis_less_001[ph])
+ph_001 = load_file('ph_axis_less_001')
+ph_0001 = load_file('ph_axis_less_0001')
+projection_dict = load_file('projection_dict')
+for phone, axis in projection_dict.items():
+        for axes_name, distributions in axis.items():
+            first_sound = distributions[0]
+            with_sound = distributions[1]
+            without_sound = distributions[2]
+
+            f_w = 1.0
+            w_wo = 1.0
+            wo_f = 1.0
+            if len(first_sound) > 100 and len(with_sound) > 100:
+                f_w = stats.mannwhitneyu(first_sound, with_sound)[1]
+            if len(with_sound) > 100 and len(without_sound) > 100:
+                w_wo = stats.mannwhitneyu(with_sound, without_sound)[1]
+            if len(without_sound) > 100 and len(first_sound) > 100:
+                wo_f = stats.mannwhitneyu(without_sound, first_sound)[1]
+            # print('{} - {} p-value: {} {} {}'.format(phone, axes_name, f_w, w_wo, wo_f))
+
+            wo_f_s = ''
+            if wo_f < 0.001:
+                wo_f_s = '+++{:.4}'.format(wo_f)
+            elif wo_f < 0.01:
+                wo_f_s = '++{:.4}'.format(wo_f)
+            else:
+                wo_f_s = '{:.4}'.format(wo_f)
+
+            w_wo_s = ''
+            if w_wo < 0.001:
+                w_wo_s = '+++{:.4}'.format(w_wo)
+            elif w_wo < 0.01:
+                w_wo_s = '++{:.4}'.format(w_wo)
+            else:
+                w_wo_s = '{:.4}'.format(w_wo)
+
+            f_w_s = ''
+            if f_w < 0.001:
+                f_w_s = '+++{:.4}'.format(f_w)
+            elif f_w < 0.01:
+                f_w_s = '++{:.4}'.format(f_w)
+            else:
+                f_w_s = '{:.4}'.format(f_w)
+
+            if (wo_f < 0.001 or w_wo < 0.001) and ((np.mean(first_sound) > np.mean(without_sound) and np.mean(
+                    with_sound) > np.mean(without_sound)) or (np.mean(first_sound) < np.mean(without_sound) and np.mean(
+                    with_sound) < np.mean(without_sound))):
+                print('{} - {} p-values: {:.4} {:.4} {:.4}'.format(phone, axes_name, f_w, wo_f, w_wo))
+                plt.hist(first_sound, 100, alpha=0.5, label='first')
+                plt.hist(with_sound, 100, alpha=0.5, label='with')
+                plt.hist(without_sound, 100, alpha=0.5, label='without')
+                plt.savefig('D:/Games/plot/' + phone + '__' + axes_name + '.png')
+                 #plt.close()   
